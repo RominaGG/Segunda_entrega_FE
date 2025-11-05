@@ -5,7 +5,7 @@ import Bitacora from './pages/Bitacora';
 import Integrantes from './pages/Integrantes';
 import APIData from './pages/APIData';
 import JSONData from './pages/JSONData';
-import Sidebar from './components/Sidebar';
+import Sidebar from './components/SideBar';
 import Footer from './components/Footer';
 import Portal from './components/Portal';
 import './styles/App.css';
@@ -22,6 +22,7 @@ function AppContent() {
   const IN_DURATION = 700;
   const OUT_DURATION = 800;
 
+  // Nota: IN/OUT_DURATION controlan la animación del portal; ajustar si añadimos más fases
 
   useEffect(() => {
     if (contentRef.current) {
@@ -33,6 +34,7 @@ function AppContent() {
   if (!path || path === location.pathname) return;
   if (portalPhase !== 'idle') return;
 
+  // iniciamos la animación de entrada
   setPortalPhase('in');
     setPortalVisible(true);
     setPortalDuration(IN_DURATION + OUT_DURATION);

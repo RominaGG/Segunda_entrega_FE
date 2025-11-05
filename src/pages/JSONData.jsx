@@ -1,35 +1,14 @@
-import React, { useState, useMemo } from 'react';
+import React from 'react';
 import data from '../data/data.json';
 import Card from '../components/Card';
-import FilterBar from '../components/FilterBar';
-import useFilter from '../hooks/useFilter';
 import '../styles/JSONData.css';
 
 const JSONData = () => {
-  const [searchText, setSearchText] = useState('');
-  const [selectedTipo, setSelectedTipo] = useState('');
-  const [selectedIntegrante, setSelectedIntegrante] = useState('');
-
-  const { filtered, tipos, integrantes } = useFilter(data, { searchText, tipo: selectedTipo, integrante: selectedIntegrante });
-
   return (
     <div className="json-data-container">
       <h1>Datos desde Archivo JSON</h1>
-
-      <FilterBar
-        searchText={searchText}
-        onSearchChange={setSearchText}
-        tipos={tipos}
-        integrantes={integrantes}
-        selectedTipo={selectedTipo}
-        onTipoChange={setSelectedTipo}
-        selectedIntegrante={selectedIntegrante}
-        onIntegranteChange={setSelectedIntegrante}
-        onClear={() => { setSearchText(''); setSelectedTipo(''); setSelectedIntegrante(''); }}
-      />
-
       <div className="api-cards">
-        {filtered.map((item, index) => (
+        {data.map((item, index) => (
           <Card key={index}>
             <h3>{item.titulo}</h3>
             <p>Integrante: {item.integrante}</p>
